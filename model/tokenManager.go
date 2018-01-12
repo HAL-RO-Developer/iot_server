@@ -7,7 +7,7 @@ import (
 	"encoding/hex"
 
 	"github.com/dgrijalva/jwt-go"
-	request "github.com/dgrijalva/jwt-go/request"
+	"github.com/dgrijalva/jwt-go/request"
 	"github.com/gin-gonic/gin"
 )
 
