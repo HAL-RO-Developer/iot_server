@@ -3,7 +3,7 @@ package validation
 import (
 	"net/http"
 
-	"github.com/HAL-RO-Developer/iot_platform/server/model"
+	"github.com/HAL-RO-Developer/iot_server/model"
 	"github.com/gin-gonic/gin"
 )
 

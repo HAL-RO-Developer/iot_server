@@ -1,8 +1,8 @@
 package router
 
 import (
-	"github.com/HAL-RO-Developer/iot_platform/server/controller"
-	"github.com/HAL-RO-Developer/iot_platform/server/logger"
+	"github.com/HAL-RO-Developer/iot_server/controller"
+	"github.com/HAL-RO-Developer/iot_server/logger"
 	"github.com/gin-gonic/gin"
 )
 
