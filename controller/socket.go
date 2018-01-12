@@ -4,7 +4,7 @@ import (
 	"strings"
 	"github.com/trevex/golem"
 	"net/http"
-	"github.com/HAL-RO-Developer/iot_platform/server/model"
+	"github.com/HAL-RO-Developer/iot_server/model"
 )
 
 type Connection struct {

@@ -3,8 +3,8 @@ package controller
 import (
 	"net/http"
 
-	"github.com/HAL-RO-Developer/iot_platform/server/controller/validation"
-	"github.com/HAL-RO-Developer/iot_platform/server/model"
+	"github.com/HAL-RO-Developer/iot_server/controller/validation"
+	"github.com/HAL-RO-Developer/iot_server/model"
 	"github.com/gin-gonic/gin"
 )
 
