@@ -7,3 +7,6 @@ run:
 	go run main.go
 drop:
 	go run cmd/dropDB.go
+
+migrate:
+	go run cmd/migrate.go
