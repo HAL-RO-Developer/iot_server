@@ -164,24 +164,18 @@ function getDevice() {
         timeout: 10000,
         headers: {
             'Authorization': localStorage.getItem('token')
-        },
-        data: {
-            'device_name': $('#device-name').val()
         }
     })
 }
 
 function removeDevice(device_id) {
     return $.ajax({
-        url: '/api/device',
+        url: '/api/device/'+device_id,
         type: 'delete',
         dataType: 'json',
         timeout: 10000,
         headers: {
             'Authorization': localStorage.getItem('token')
-        },
-        data: {
-            'device_id': device_id
         }
     })
 }

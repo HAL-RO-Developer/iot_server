@@ -17,14 +17,14 @@ type Result struct {
 }
 
 type Task struct {
-	PortNo uint16   `json:"port"`
-	Func   uint16   `json:"function"`
-	Args[] int16  	`json:"args"`
+	PortNo uint16  `json:"port"`
+	Func   uint16  `json:"function"`
+	Args   []int16 `json:"args"`
 }
 
 /* クロスオリジンヘッダー追加 */
 
-func Cros(c *gin.Context)  {
+func Cros(c *gin.Context) {
 	c.Header("Access-Control-Allow-Origin", "*")
 	c.Header("Access-Control-Allow-Headers", "access-control-allow-origin, access-control-allow-headers")
 }
@@ -178,9 +178,9 @@ func PreflightRequest(c *gin.Context) {
 	c.Abort()
 }
 
-func DeleteDevice(c *gin.Context){
+func DeleteDevice(c *gin.Context) {
 	userName, ok := model.AuthorityCheck(c)
-	deviceId := c.PostForm("device_id")
+	deviceId := c.Param("device_id")
 	if !ok {
 		c.JSON(http.StatusUnauthorized, gin.H{
 			"err": "ログイン出来ません",
@@ -188,7 +188,7 @@ func DeleteDevice(c *gin.Context){
 		return
 	}
 
-	if !model.ExistDevice(userName,deviceId){
+	if !model.ExistDevice(userName, deviceId) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"err": "デバイスIDが見つかりませんでした。",
 		})

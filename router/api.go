@@ -14,7 +14,7 @@ func apiRouter(api *gin.RouterGroup) {
 	api.POST("/signin", controller.LoginController)
 	api.POST("/device", controller.CreateNewProject)
 	api.GET("/device", controller.GetDevice)
-	api.DELETE("/device", controller.DeleteDevice)
+	api.DELETE("/device/:device_id", controller.DeleteDevice)
 	api.OPTIONS("/function", controller.PreflightRequest)
 	api.POST("/function", controller.UserRequestController)
 	api.GET("/ws/:device_id", func(c *gin.Context) {
