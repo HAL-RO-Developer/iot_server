@@ -60,4 +60,7 @@ go run main.go
 ## deviceの生成
 `go run cmd/createDevice.go`
 
+## API動作一覧
+https://www.getpostman.com/collections/98be0a5a6bd318477ef3
+
 
