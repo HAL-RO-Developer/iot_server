@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/HAL-RO-Developer/iot_server/controller"
-	"github.com/HAL-RO-Developer/iot_server/logger"
+	//"github.com/HAL-RO-Developer/iot_server/logger"
 	"github.com/gin-gonic/gin"
 )
 
@@ -24,7 +24,7 @@ func apiRouter(api *gin.RouterGroup) {
 	})
 
 	device := api.Group("/device")
-	device.Use(logger.JsonLogger)
+	//device.Use(logger.JsonLogger)
 	device.POST("/iam", controller.DeviceRegistration)
 	device.POST("/receive", controller.DeviceReceiveController)
 }

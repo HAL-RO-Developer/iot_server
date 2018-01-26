@@ -6,6 +6,7 @@ import (
 	"github.com/HAL-RO-Developer/iot_server/controller/validation"
 	"github.com/HAL-RO-Developer/iot_server/model"
 	"github.com/gin-gonic/gin"
+	"fmt"
 )
 
 func DeviceRegistration(c *gin.Context) {
@@ -52,6 +53,8 @@ func DeviceReceiveController(c *gin.Context) {
 		return
 	}
 
+	fmt.Println(req.DeviceID)
+	fmt.Println(req.MacAddr)
 	// デバイスIDチェック
 	res := model.ExistDeviceByIam(req.DeviceID, req.MacAddr)
 	if !res {
@@ -63,8 +66,10 @@ func DeviceReceiveController(c *gin.Context) {
 
 	// 命令取得
 	value := model.GetTaskInfo(req.DeviceID)
+	fmt.Println(" DeviceReceiveController(deviceRequest)")
+	fmt.Println(value)
 	c.JSON(http.StatusOK, gin.H{
-		"success": value,
+		"port": value,
 	})
 
 	MessageSend(req)

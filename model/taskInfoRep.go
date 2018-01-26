@@ -12,9 +12,9 @@ type TaskInfo struct {
 }
 
 type PortTask struct {
-	PortNo int      `json:"port"`
+	PortNo int      `json:"port_no"`
 	Func   uint64   `json:"function"`
-	Args   []string `json:"args"`
+	Args   []uint16 `json:"args"`
 }
 
 type GetDevice struct {
@@ -25,7 +25,7 @@ type GetDevice struct {
 type Message struct {
 	DeviceID string        `json:"device_id"`
 	MacAddr  string        `json:"mac"`
-	Msg    	 []ReturnValue `json:"message"`
+	Msg    	 []ReturnValue `json:"port"`
 }
 
 type ReturnValue struct {
@@ -40,16 +40,20 @@ var returnValueM = new(sync.Mutex)
 
 func SetTaskInfo(device_id string, task []PortTask) {
 	portInfoM.Lock()
-	flg := true
+	//flg := true
 	for _, value := range taskInfo {
 		if value.DeviceID == device_id {
-			flg = false
-			value.Port = task
+			//flg = false
+			taskInfo = remove(taskInfo, TaskInfo{DeviceID: value.DeviceID, Port: value.Port})
 		}
 	}
+	/*
 	if flg {
 		taskInfo = append(taskInfo, TaskInfo{DeviceID: device_id, Port: task})
 	}
+	*/
+
+	taskInfo = append(taskInfo, TaskInfo{DeviceID: device_id, Port: task})
 	portInfoM.Unlock()
 }
 
@@ -63,4 +67,15 @@ func GetTaskInfo(device_id string) []PortTask {
 		}
 	}
 	return nil
+}
+
+// スライスの中身削除
+func remove(origin []TaskInfo, search TaskInfo) []TaskInfo{
+	result := []TaskInfo{}
+	for _, v := range origin {
+		if v.DeviceID != search.DeviceID{
+			result = append(result, TaskInfo{DeviceID: v.DeviceID, Port: v.Port})
+		}
+	}
+	return result
 }

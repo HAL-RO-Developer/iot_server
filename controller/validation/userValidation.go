@@ -48,22 +48,22 @@ func ToUser(c *gin.Context) (*User, bool) {
 */
 func ToFunction(c *gin.Context, user string) (*SetFunc, bool) {
 	var req SetFunc
-	//err := c.BindJSON(&req)
-	//if err != nil {
-	//	c.JSON(http.StatusBadRequest, gin.H{
-	//		"err": err,
-	//	})
-	//	return nil, false
-	//}
-
-	deviceId := c.PostForm("device_id")
-	// DeviceID確認
-	if !model.ExistDevice(user, deviceId) {
+	err := c.BindJSON(&req)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"err": "デバイスが見つかりません",
+			"err": err,
 		})
 		return nil, false
 	}
+
+	//deviceId := c.PostForm("device_id")
+	//// DeviceID確認
+	//if !model.ExistDevice(user, deviceId) {
+	//	c.JSON(http.StatusBadRequest, gin.H{
+	//		"err": "デバイスが見つかりません",
+	//	})
+	//	return nil, false
+	//}
 	return &req, true
 }
 

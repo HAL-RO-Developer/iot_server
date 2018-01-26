@@ -59,7 +59,7 @@ func ExistDeviceByPin(pin string) bool {
 func CreateDeviceID() string {
 	var deviceID string
 	for {
-		deviceID = CreateUuid(32, []rune("ABCDEFGHRJKLNMOPQRSTUPWXYZabcdefghijklmnopqrstuvwxyz0123456789"))
+		deviceID = CreateUuid(12, []rune("ABCDEFGHRJKLNMOPQRSTUPWXYZabcdefghijklmnopqrstuvwxyz0123456789"))
 		if !ExistDeviceById(deviceID) {
 			break
 		}
