@@ -25,12 +25,12 @@ type GetDevice struct {
 type Message struct {
 	DeviceID string        `json:"device_id"`
 	MacAddr  string        `json:"mac"`
-	Msg    	 []ReturnValue `json:"port"`
+	Msg      []ReturnValue `json:"raw"`
 }
 
 type ReturnValue struct {
-	PortNo uint16   `json:"port"`
-	Value  int16    `json:"value"`
+	PortNo uint16 `json:"port"`
+	Value  int16  `json:"value"`
 }
 
 var taskInfo = []TaskInfo{}
@@ -48,9 +48,9 @@ func SetTaskInfo(device_id string, task []PortTask) {
 		}
 	}
 	/*
-	if flg {
-		taskInfo = append(taskInfo, TaskInfo{DeviceID: device_id, Port: task})
-	}
+		if flg {
+			taskInfo = append(taskInfo, TaskInfo{DeviceID: device_id, Port: task})
+		}
 	*/
 
 	taskInfo = append(taskInfo, TaskInfo{DeviceID: device_id, Port: task})
@@ -70,10 +70,10 @@ func GetTaskInfo(device_id string) []PortTask {
 }
 
 // スライスの中身削除
-func remove(origin []TaskInfo, search TaskInfo) []TaskInfo{
+func remove(origin []TaskInfo, search TaskInfo) []TaskInfo {
 	result := []TaskInfo{}
 	for _, v := range origin {
-		if v.DeviceID != search.DeviceID{
+		if v.DeviceID != search.DeviceID {
 			result = append(result, TaskInfo{DeviceID: v.DeviceID, Port: v.Port})
 		}
 	}

@@ -46,7 +46,7 @@ func ToUser(c *gin.Context) (*User, bool) {
 /*
 	関数への入力情報チェック
 */
-func ToFunction(c *gin.Context, user string) (*SetFunc, bool) {
+func ToFunction(c *gin.Context) (*SetFunc, bool) {
 	var req SetFunc
 	err := c.BindJSON(&req)
 	if err != nil {
@@ -55,15 +55,6 @@ func ToFunction(c *gin.Context, user string) (*SetFunc, bool) {
 		})
 		return nil, false
 	}
-
-	//deviceId := c.PostForm("device_id")
-	//// DeviceID確認
-	//if !model.ExistDevice(user, deviceId) {
-	//	c.JSON(http.StatusBadRequest, gin.H{
-	//		"err": "デバイスが見つかりません",
-	//	})
-	//	return nil, false
-	//}
 	return &req, true
 }
 

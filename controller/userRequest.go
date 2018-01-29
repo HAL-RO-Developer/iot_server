@@ -30,16 +30,8 @@ func Cros(c *gin.Context) {
 }
 
 func UserRequestController(c *gin.Context) {
-	user, ok := model.AuthorityCheck(c)
-	if !ok {
-		c.JSON(http.StatusUnauthorized, gin.H{
-			"err": "ログイン出来ません",
-		})
-		return
-	}
-
 	/* デバイスIDサーチ */
-	setFunc, ok := validation.ToFunction(c, user)
+	setFunc, ok := validation.ToFunction(c)
 	if !ok {
 		return
 	}
