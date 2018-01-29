@@ -64,7 +64,7 @@ func DeviceReceiveController(c *gin.Context) {
 	// 命令取得
 	value := model.GetTaskInfo(req.DeviceID)
 	c.JSON(http.StatusOK, gin.H{
-		"port": value,
+		"raw": value,
 	})
 
 	MessageSend(req)
