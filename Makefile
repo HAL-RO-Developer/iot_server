@@ -1,3 +1,4 @@
+
 create:
 	cp dbconfig.yml.template dbconfig.yml
 build:
@@ -10,3 +11,8 @@ drop:
 
 migrate:
 	go run cmd/migrate.go
+
+docker/push:
+	make -f .circleci/ci.mk go/build
+	make -f .circleci/ci.mk docker/build
+	make -f .circleci/ci.mk docker/push
