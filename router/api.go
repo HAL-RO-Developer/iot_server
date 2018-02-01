@@ -27,4 +27,5 @@ func apiRouter(api *gin.RouterGroup) {
 	//device.Use(logger.JsonLogger)
 	device.POST("/iam", controller.DeviceRegistration)
 	device.POST("/receive", controller.DeviceReceiveController)
+	device.POST("/receive2", controller.DeviceReceive)
 }
