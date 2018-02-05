@@ -30,10 +30,17 @@ func Cros(c *gin.Context) {
 }
 
 func UserRequestController(c *gin.Context) {
-	/* デバイスIDサーチ */
+
 	setFunc, ok := validation.ToFunction(c)
 	if !ok {
 		return
+	}
+
+	/* デバイスIDサーチ */
+	if !model.ExistDeviceById(setFunc.DeviceID){
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"err": "デバイスIDが見つかりません",
+		})
 	}
 	model.SetTaskInfo(setFunc.DeviceID, setFunc.Port)
 
@@ -151,9 +158,8 @@ func UserWebSocketController(c *gin.Context) bool {
 	if !ok {
 		return false
 	}
-
-	res := model.ExistDeviceById(setFunc.DeviceID)
-	if !res {
+	
+	if !model.ExistDeviceById(setFunc.DeviceID) {
 		return false
 	}
 	return true

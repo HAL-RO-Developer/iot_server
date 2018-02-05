@@ -3,18 +3,15 @@ package controller
 import (
 	"net/http"
 
-	"fmt"
-
 	"github.com/HAL-RO-Developer/iot_server/model"
 	"github.com/gin-gonic/gin"
 )
 
 func DeviceReceive(c *gin.Context) {
 	device_id := c.Param("id")
-	fmt.Println(device_id)
+	//fmt.Println(device_id)
 	// デバイスへの命令検索
-	ok := model.ExistDeviceById(device_id)
-	if !ok {
+	if !model.ExistDeviceById(device_id) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"err": "デバイスIDが登録されていません",
 		})
