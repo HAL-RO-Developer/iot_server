@@ -41,6 +41,7 @@ func UserRequestController(c *gin.Context) {
 		c.JSON(http.StatusUnauthorized, gin.H{
 			"err": "デバイスIDが見つかりません",
 		})
+		return
 	}
 	model.SetTaskInfo(setFunc.DeviceID, setFunc.Port)
 
@@ -158,7 +159,7 @@ func UserWebSocketController(c *gin.Context) bool {
 	if !ok {
 		return false
 	}
-	
+
 	if !model.ExistDeviceById(setFunc.DeviceID) {
 		return false
 	}
