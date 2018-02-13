@@ -5,7 +5,6 @@ import (
 
 	"github.com/HAL-RO-Developer/iot_server/model"
 	"github.com/gin-gonic/gin"
-	"fmt"
 )
 
 func PermissionMyDevice(c *gin.Context) (model.GetDevice, bool) {
@@ -27,7 +26,6 @@ func PermissionMyDevice(c *gin.Context) (model.GetDevice, bool) {
 func SearchMyFunction(c *gin.Context) (model.Message, bool) {
 	var req model.Message
 	err := c.BindJSON(&req)
-	fmt.Println(req)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"err": "JSONデータが空です。",

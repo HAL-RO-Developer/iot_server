@@ -8,6 +8,7 @@ import (
 	"github.com/HAL-RO-Developer/iot_server/controller/validation"
 	"github.com/HAL-RO-Developer/iot_server/model"
 	"github.com/gin-gonic/gin"
+	"fmt"
 )
 
 type Result struct {
@@ -36,6 +37,7 @@ func UserRequestController(c *gin.Context) {
 		return
 	}
 
+	fmt.Println(setFunc.DeviceID)
 	/* デバイスIDサーチ */
 	if !model.ExistDeviceById(setFunc.DeviceID){
 		c.JSON(http.StatusUnauthorized, gin.H{

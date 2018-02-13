@@ -15,7 +15,7 @@ type User struct {
 type SetFunc struct {
 	DeviceID string           `json:"device_id"`
 	MacAddr  string           `json:"mac"`
-	Port     []model.PortTask `json:"port"`
+	Port     []model.PortTask `json:"raw"`
 }
 
 /*
