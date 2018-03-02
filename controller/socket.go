@@ -34,7 +34,7 @@ func connectHandle(conn *golem.Connection, http *http.Request) {
 func MessageSend(msg model.Message ) {
 	for _, value := range connes {
 		if value.DeviceID == msg.DeviceID {
-			value.Conn.Emit("message", msg)
+			value.Conn.Emit("", msg)
 		}
 	}
 }
