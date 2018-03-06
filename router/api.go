@@ -8,7 +8,6 @@ import (
 
 func apiRouter(api *gin.RouterGroup) {
 	ws := controller.GetHandle()
-
 	api.Use(controller.Cros)
 	api.POST("/signup", controller.CreateUserController)
 	api.POST("/signin", controller.LoginController)
